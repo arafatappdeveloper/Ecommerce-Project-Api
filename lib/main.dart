@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'View/screen/bottomScreen/bottom_screen.dart';
-import 'View/screen/splass_screen.dart';
+
+import 'View_Model/products_screen.dart';
+
 
 
 void main() {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: BottomScreen(),
+          home: ProductsScreen(),
         );
       },
     );
