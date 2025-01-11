@@ -1,4 +1,6 @@
 import 'package:ecommerce_project/Services/api_services.dart';
+import 'package:ecommerce_project/View/single_products_view.dart';
+import 'package:ecommerce_project/utils/model_text.dart';
 import 'package:flutter/material.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -42,12 +44,24 @@ class _ProductsScreenState extends State<ProductsScreen> {
                  crossAxisCount: 2),
             itemBuilder: (context,index){
                final productslist= products![index];
-               return Card(
-                 child: Column(
-                   children: [
-                     Expanded(child: Image.network(productslist['category']['image'],height: 50,width: double.infinity,fit: BoxFit.cover,),),
-                     Expanded(child: Text(productslist['title']))
-                   ],
+               return InkWell(
+                 onTap: (){
+                   Navigator.push(context, 
+                       MaterialPageRoute(builder: (context)=>SingleProductsView(product: productslist)));
+                 },
+                 child: Card(
+                   child: Stack(
+                     textDirection: TextDirection.ltr,
+                     fit: StackFit.loose,
+                     alignment: AlignmentDirectional.bottomCenter,
+                     children: [
+                       Image.network(productslist['category']['image'],width: double.infinity,fit: BoxFit.cover,),
+                       Text(productslist['title'],style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),),
+                       Positioned(
+                         top: 10,left:140,right: 10,
+                           child: Icon(Icons.favorite_border,size: 25,color: Colors.white,))
+                     ],
+                   ),
                  ),
                );
             },
